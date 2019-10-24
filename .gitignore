@@ -6,4 +6,4 @@ telegramapp/images
 telegramapp/beers.db
 app/__pycache__/
 telegramapp/__pycache__/
-.idea/
+.idea
