@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ee6c4c6-5857-4eec-b528-06c8210ab7d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/POS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/beer.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_handling.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -222,7 +219,7 @@
       <workItem from="1566270343239" duration="135000" />
       <workItem from="1571892309875" duration="293000" />
       <workItem from="1571892669292" duration="522000" />
-      <workItem from="1571893217355" duration="10223000" />
+      <workItem from="1571893217355" duration="10777000" />
     </task>
     <task id="LOCAL-00001" summary="Changed name">
       <created>1565720105264</created>
@@ -266,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565981556782</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added edit page">
+      <created>1571943208848</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571943208848</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +297,8 @@
     <MESSAGE value="set up beer csv/ reader" />
     <MESSAGE value="set up beer csv + reader" />
     <MESSAGE value="deleted beer_csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted beer_csv" />
+    <MESSAGE value="added edit page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added edit page" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TAP_POS$POS.coverage" NAME="POS Coverage Results" MODIFIED="1571934525341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
