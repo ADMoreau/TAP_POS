@@ -218,7 +218,7 @@
       <workItem from="1566270343239" duration="135000" />
       <workItem from="1571892309875" duration="293000" />
       <workItem from="1571892669292" duration="522000" />
-      <workItem from="1571893217355" duration="11049000" />
+      <workItem from="1571893217355" duration="11321000" />
     </task>
     <task id="LOCAL-00001" summary="Changed name">
       <created>1565720105264</created>
@@ -276,7 +276,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571943667632</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update git ignore">
+      <created>1571943969076</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1571943969076</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update git ignore">
+      <created>1571944110766</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1571944110766</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +318,8 @@
     <MESSAGE value="set up beer csv + reader" />
     <MESSAGE value="deleted beer_csv" />
     <MESSAGE value="added edit page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added edit page" />
+    <MESSAGE value="update git ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="update git ignore" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TAP_POS$POS.coverage" NAME="POS Coverage Results" MODIFIED="1571934525341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
