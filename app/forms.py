@@ -8,6 +8,9 @@ from app.db_handler import get_column
 
 
 class SetBeer(FlaskForm):
+    '''
+    form used for home page to create the drop down menus to select beers
+    '''
     BEER_CHOICES = get_column('name')
     tap1 = SelectField(label='Tap 1', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
     tap2 = SelectField(label='Tap 2', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
@@ -53,15 +56,21 @@ class SetBeer(FlaskForm):
 
 
 class SelectEdit(FlaskForm):
+    '''
+    used to edit previously saved beers
+    '''
     BEER_CHOICES = get_column('name')
     beer = SelectField(label='Beer', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
     submit = SubmitField('Submit')
 
 
 class BeerForm(FlaskForm):
+    '''
+    form used to create new beer or to edit previously saved beer
+    '''
 
     beername = StringField('Beer Name', validators=[DataRequired()])
-    pattern = SelectField(label='Pattern', choices=[(pattern[0], pattern[1]) for pattern in enumerate(patterns)])
+    pattern = SelectField(label='Pattern', choices=[(pattern[0], str(pattern[1])) for pattern in enumerate(patterns)])
     val1 = RadioField('Value 1', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')],
                       validators=[DataRequired()])
     val2 = RadioField('Value 2', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')],

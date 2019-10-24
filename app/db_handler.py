@@ -66,6 +66,8 @@ def update(beer, form):
     """
     use the beer for immutable data and the form for mutable data
     that will be updated
+
+    param form : wtfforms BeerForm in app/forms.py
     """
     task = (int(request.form['val1']),
             int(request.form['val2']),
