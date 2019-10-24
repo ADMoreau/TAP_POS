@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3ee6c4c6-5857-4eec-b528-06c8210ab7d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3ee6c4c6-5857-4eec-b528-06c8210ab7d5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +217,7 @@
       <workItem from="1566270343239" duration="135000" />
       <workItem from="1571892309875" duration="293000" />
       <workItem from="1571892669292" duration="522000" />
-      <workItem from="1571893217355" duration="10777000" />
+      <workItem from="1571893217355" duration="11049000" />
     </task>
     <task id="LOCAL-00001" summary="Changed name">
       <created>1565720105264</created>
@@ -270,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571943208848</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added edit page">
+      <created>1571943667632</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1571943667632</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
