@@ -1,0 +1,356 @@
+
+<html>
+<head>
+<style>
+/* The navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 8px 4px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 300px;
+  height: 1800px; /* Used in this example to enable scrolling */
+}
+</style>
+</head>
+<table style="width: 100%">
+    <colgroup>
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+        <col span="1" style="width: 33%;">
+    </colgroup>
+    <tbody>
+        <tr>
+            <td><button onclick="location.href='/select-edit'" class="btn btn-default" style="margin: 0 auto; display: block;">Edit entry</button></td>
+            <td><button onclick="location.href='/create-new'" class="btn btn-default" style="margin: 0 auto; display: block;">Create New</button></td>
+            <td><button onclick="location.href='/view'" class="btn btn-default" style="margin: 0 auto; display: block;">View Data</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="navbar">
+    <a>Jump to:</a>
+    <a href="#tap_1">1</a>
+    <a href="#tap_2">2</a>
+    <a href="#tap_3">3</a>
+    <a href="#tap_4">4</a>
+    <a href="#tap_5">5</a>
+    <a href="#tap_6">6</a>
+    <a href="#tap_7">7</a>
+    <a href="#tap_8">8</a>
+    <a href="#tap_9">9</a>
+    <a href="#tap_10">10</a>
+    <a href="#tap_11">11</a>
+    <a href="#tap_12">12</a>
+    <a href="#tap_13">13</a>
+    <a href="#tap_14">14</a>
+    <a href="#tap_15">15</a>
+    <a href="#tap_16">16</a>
+    <a href="#tap_17">17</a>
+    <a href="#tap_18">18</a>
+    <a href="#tap_19">19</a>
+    <a href="#tap_20">20</a>
+    <a href="#tap_21">21</a>
+    <a href="#tap_22">22</a>
+    <a href="#tap_23">23</a>
+    <a href="#tap_24">24</a>
+    <a href="#tap_25">25</a>
+    <a href="#tap_26">26</a>
+    <a href="#tap_27">27</a>
+    <a href="#tap_28">28</a>
+    <a href="#tap_29">29</a>
+    <a href="#tap_30">30</a>
+    <a href="#tap_31">31</a>
+    <a href="#tap_32">32</a>
+    <a href="#tap_33">33</a>
+    <a href="#tap_34">34</a>
+    <a href="#tap_35">35</a>
+    <a href="#tap_36">36</a>
+    <a href="#tap_37">37</a>
+    <a href="#tap_38">38</a>
+    <a href="#tap_39">39</a>
+    <a href="#tap_40">40</a>
+</div>
+
+<div class="main">
+<body>
+{% block app_content %}
+    <form action="/process" method="post">
+    {{ form.hidden_tag() }}
+        <table style="width: 100%">
+            <colgroup>
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 60%;">
+                <col span="1" style="width: 10%;">
+                <col span="1" style="width: 10%;">
+            </colgroup>
+            <tbody>
+                <tr id="tap_1">
+                    <td><h2>{{ form.tap1.label }}</h2></td>
+                    <td>{{ form.tap1 (style="width: 80%;")}}</td>
+                    <td><button class="btn btn-default" value="tap1Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap1Submit" name="action" type="submit">Submit</button></td>
+
+                </tr>
+                <tr id="tap_2">
+                    <td><h2>{{ form.tap2.label }}</h2></td>
+                    <td>{{ form.tap2 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap2Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap2Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_3">
+                    <td><h2>{{ form.tap3.label }}</h2></td>
+                    <td>{{ form.tap3 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap3Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap3Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_4">
+                    <td><h2>{{ form.tap4.label }}</h2></td>
+                    <td>{{ form.tap4 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap4Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap4Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_5">
+                    <td><h2>{{ form.tap5.label }}</h2></td>
+                    <td>{{ form.tap5 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap5Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap5Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_6">
+                    <td><h2>{{ form.tap6.label }}</h2></td>
+                    <td>{{ form.tap6 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap6Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap6Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_7">
+                    <td><h2>{{ form.tap7.label }}</h2></td>
+                    <td>{{ form.tap7 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap7Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap7Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_8">
+                    <td><h2>{{ form.tap8.label }}</h2></td>
+                    <td>{{ form.tap8 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap8Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap8Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_9">
+                    <td><h2>{{ form.tap9.label }}</h2></td>
+                    <td>{{ form.tap9 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap9Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap9Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_10">
+                    <td><h2>{{ form.tap10.label }}</h2></td>
+                    <td>{{ form.tap10 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap10Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap10Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_11">
+                    <td><h2>{{ form.tap11.label }}</h2></td>
+                    <td>{{ form.tap11 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap11Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap11Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_12">
+                    <td><h2>{{ form.tap12.label }}</h2></td>
+                    <td>{{ form.tap12 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap12Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap12Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_13">
+                    <td><h2>{{ form.tap13.label }}</h2></td>
+                    <td>{{ form.tap13 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap13Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap13Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_14">
+                    <td><h2>{{ form.tap14.label }}</h2></td>
+                    <td>{{ form.tap14 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap14Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap14Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_15">
+                    <td><h2>{{ form.tap15.label }}</h2></td>
+                    <td>{{ form.tap15 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap15Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap15Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_16">
+                    <td><h2>{{ form.tap16.label }}</h2></td>
+                    <td>{{ form.tap16 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap16Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap16Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_17">
+                    <td><h2>{{ form.tap17.label }}</h2></td>
+                    <td>{{ form.tap17 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap17Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap17Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_18">
+                    <td><h2>{{ form.tap18.label }}</h2></td>
+                    <td>{{ form.tap18 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap18Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap18Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_19">
+                    <td><h2>{{ form.tap19.label }}</h2></td>
+                    <td>{{ form.tap19 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap19Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap19Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_20">
+                    <td><h2>{{ form.tap20.label }}</h2></td>
+                    <td>{{ form.tap20 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap20Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap20Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_21">
+                    <td><h2>{{ form.tap21.label }}</h2></td>
+                    <td>{{ form.tap21 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap21Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap21Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_22">
+                    <td id="tap_22"><h2>{{ form.tap22.label }}</h2></td>
+                    <td>{{ form.tap22 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap22Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap22Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_23">
+                    <td><h2>{{ form.tap23.label }}</h2></td>
+                    <td>{{ form.tap23 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap23Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap23Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_24">
+                    <td><h2>{{ form.tap24.label }}</h2></td>
+                    <td>{{ form.tap24 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap24Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap24Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_25">
+                    <td><h2>{{ form.tap25.label }}</h2></td>
+                    <td>{{ form.tap25 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap25Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap25Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_26">
+                    <td><h2>{{ form.tap26.label }}</h2></td>
+                    <td>{{ form.tap26 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap26Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap26Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_27">
+                    <td><h2>{{ form.tap27.label }}</h2></td>
+                    <td>{{ form.tap27 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap27Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap27Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_28">
+                    <td><h2>{{ form.tap28.label }}</h2></td>
+                    <td>{{ form.tap28 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap28Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap28Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_29">
+                    <td><h2>{{ form.tap29.label }}</h2></td>
+                    <td>{{ form.tap29 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap29Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap29Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_30">
+                    <td><h2>{{ form.tap30.label }}</h2></td>
+                    <td>{{ form.tap30 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap30Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap30Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_31">
+                    <td><h2>{{ form.tap31.label }}</h2></td>
+                    <td>{{ form.tap31 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap31Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap31Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_32">
+                    <td><h2>{{ form.tap32.label }}</h2></td>
+                    <td>{{ form.tap32 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap32Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap32Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_33">
+                    <td><h2>{{ form.tap33.label }}</h2></td>
+                    <td>{{ form.tap33 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap33Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap33Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_34">
+                    <td><h2>{{ form.tap34.label }}</h2></td>
+                    <td>{{ form.tap34 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap34Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap34Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_35">
+                    <td><h2>{{ form.tap35.label }}</h2></td>
+                    <td>{{ form.tap35 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap35Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap35Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_36">
+                    <td><h2>{{ form.tap36.label }}</h2></td>
+                    <td>{{ form.tap36 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap36Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap36Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_37">
+                    <td><h2>{{ form.tap37.label }}</h2></td>
+                    <td>{{ form.tap37 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap37Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap37Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_38">
+                    <td><h2>{{ form.tap38.label }}</h2></td>
+                    <td>{{ form.tap38 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap38Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap38Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_39">
+                    <td><h2>{{ form.tap39.label }}</h2></td>
+                    <td>{{ form.tap39 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap39Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap39Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+                <tr id="tap_40">
+                    <td><h2>{{ form.tap40.label }}</h2></td>
+                    <td>{{ form.tap40 (style="width: 80%;" )}}</td>
+                    <td><button class="btn btn-default" value="tap40Demo" name="action" type="submit">Demo</button></td>
+                    <td><button class="btn btn-default" value="tap40Submit" name="action" type="submit">Submit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}
+</body>
+</div>
+</html>

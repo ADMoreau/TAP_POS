@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+    <h1>Edit Entry</h1>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p style="margin-left: 40px">
+            {{ form.beer.label }}
+            {{ form.beer }}
+            {% for error in form.beer.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}

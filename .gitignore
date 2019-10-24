@@ -1,0 +1,8 @@
+app/config.py
+app/beers.db
+app/uploads
+telegramapp/secrets.py
+telegramapp/images
+telegramapp/beers.db
+app/__pycache__/
+telegramapp/__pycache__/

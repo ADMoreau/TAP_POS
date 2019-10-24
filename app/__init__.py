@@ -1,0 +1,2 @@
+
+patterns = ['bpm', 'radialpatternshift', 'juggle']
