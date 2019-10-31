@@ -1,34 +1,43 @@
-import time
-import serial
+from flask import Flask
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from app.config import Config
+from flask_bootstrap import Bootstrap
 
-from app.arduino import Arduino
-from app.digit_display import DigitDisplay
 
-patterns = ['bpm', 'radialpatternshift', 'juggle']
+app = Flask(__name__, template_folder='templates')
+app.config.from_object(Config)
+bootstrap = Bootstrap(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-try:
-    '''
-    connect to and set the serial connection between the raspberry pi and teensy boards
+#db.create_all()
+
+def create_tables():
+    from app.db_handler import Beer
     
-    scroll_text = teensy 3.2
-    led_display = teensy 3.6
-    '''
-    print('Connecting to Arduinos')
-    port = '/dev/ttyACM0'
-    scroll_text_arduino = serial.Serial(port, 9600, timeout=1)
-    time.sleep(.5);
-    scroll_text = Arduino(scroll_text_arduino)
-    print("Scroll text board connected ACM0")
+    
+    beer = Beer()
+    beer.name = "temp3"
+    beer.val1 = 5
+    beer.val2 = 5
+    beer.val3 = 5
+    beer.val4 = 5
+    beer.val5 = 5
+    beer.rarity = 3
+    beer.abv = 123
+    beer.pattern = 1
+    beer.tap = -1
+    db.session.add(beer)
+    db.session.commit()
 
-    port = '/dev/ttyACM1'
-    led_display_arduino = serial.Serial(port, 9600, timeout=1)
-    time.sleep(.5);
-    led_display = Arduino(led_display_arduino)
-    print("LED board connected, ACM1")
+#create_tables()
 
-    digit_display = DigitDisplay()
-    print("Digit Display Connected")
+from app import POS, db_handler
+from app.arduino import get_ip
 
-except Exception as e:
-    print(e)
+print("Current IP is", get_ip())
+print("Point your browser to http://", get_ip(), sep="")
+print()
 
+#app.run(debug=True, host='0.0.0.0')

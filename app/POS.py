@@ -1,20 +1,39 @@
 import sys
 import threading
 from flask import request, render_template, redirect, flash, Flask, session
-from flask_bootstrap import Bootstrap
-from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
-
-from app import patterns, scroll_text, led_display
+from app import app
 from app.db_handler import *
 from app.forms import *
-from app.config import Config
 from app.tables import Beers
-from app.arduino import *
 
-app = Flask(__name__, template_folder='templates')
-app.config.from_object(Config)
-bootstrap = Bootstrap(app)
 
+try:
+    '''
+    connect to and set the serial connection between the raspberry pi and teensy boards
+    
+    scroll_text = teensy 3.2
+    led_display = teensy 3.6
+    '''
+
+    print('Connecting to Arduinos')
+    port = '/dev/ttyUSB-SCROLLTEXT'
+    scroll_text_arduino = serial.Serial(port, 9600, timeout=1)
+    time.sleep(.5);
+    scroll_text = Arduino(scroll_text_arduino)
+    print("Scroll text board connected")
+
+    port = '/dev/ttyUSB-MAINDISPLAY'
+    led_display_arduino = serial.Serial(port, 9600, timeout=1)
+    time.sleep(.5);
+    led_display = Arduino(led_display_arduino)
+    print("LED board connected")
+
+    digit_display = DigitDisplay()
+    print("Digit Display Connected")
+
+except Exception as e:
+    print(e)
+    
 
 @app.route('/edit', methods=['GET', 'POST'])
 def edit_entry():
@@ -62,8 +81,10 @@ def create_new():
     '''
     go to the page where you create a new beer to save in the database
     '''
-    form = BeerForm(request.form)
-    if form.validate_on_submit():
+    form = BeerForm()
+    #if form.validate_on_submit():
+    if request.method=="POST":
+        print("Validated")
         flash(insert(form))
         return redirect('/')
     return render_template('create-new.html', form=form)
@@ -97,6 +118,7 @@ def process():
     return ('', 204)  # redirect('/')
 
 
+@app.route('/index', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def index():
     '''
@@ -107,13 +129,13 @@ def index():
     form = SetBeer()
     return render_template('main.html', form=form)
 
-
+'''
 if __name__ == '__main__':
 
     print("Current IP is", get_ip())
     print("Point your browser to http://", get_ip(), sep="")
     print()
 
-    app.run('0.0.0.0')
-
+    app.run(debug=True, host='0.0.0.0')
+'''
 

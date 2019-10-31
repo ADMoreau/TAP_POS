@@ -3,64 +3,47 @@ from contextlib import closing
 from flask import request
 from werkzeug.utils import secure_filename
 import os
-
-#from app.POS import app
-
-
-def commit(sql, task=None, get=False):
-    with closing(sqlite3.connect('beers.db', check_same_thread=False)) as conn:
-        with conn:
-            with closing(conn.cursor()) as cur:
-                if task == None:
-                    data = cur.execute(sql).fetchall()
-                    conn.commit()
-                    return data
-                if get:
-                    data = cur.execute(sql, task).fetchall()
-                    conn.commit()
-                    return data
-                else:
-                    cur.execute(sql, task)
-                    conn.commit()
+import time
+from . import db
 
 
-def get_dict(sql, task):
-    return [dict(val1=row[0],
-                 val2=row[1],
-                 val3=row[2],
-                 val4=row[3],
-                 val5=row[4],
-                 name=row[5],
-                 rarity=row[6],
-                 abv=row[7],
-                 pattern=row[8])
-            for row in commit(sql, task, get=True)]
+class Beer(db.Model):
+    __tablename__ = 'beers'
+    
+    name = db.Column(db.String(64), primary_key=True, nullable=False)
+    val1 = db.Column(db.Integer, nullable=False)
+    val2 = db.Column(db.Integer, nullable=False)
+    val3 = db.Column(db.Integer, nullable=False)
+    val4 = db.Column(db.Integer, nullable=False)
+    val5 = db.Column(db.Integer, nullable=False)
+    rarity = db.Column(db.Integer, nullable=False)
+    abv = db.Column(db.Integer, nullable=False)
+    pattern = db.Column(db.Integer, nullable=False)
+    tap = db.Column(db.Integer, nullable=False)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+        db.session.close()
+
+    def __rep__(self):
+        return '<BEER {}>'.format(self.name)
 
 
 def get_records():
-    sql = "SELECT * FROM beers"
-    try:
-        return get_dict(sql, task=None)
-    except Exception as e:
-        return e
+    return db.query(Beer).all()
 
 
-def get_beer_by_name(name):
-    sql = '''SELECT * FROM beers WHERE name=?'''
-    try:
-        return get_dict(sql, (name,))
-    except Exception as e:
-        return e
+def get_beer_by_name(beername):
+    beer = db.query(Beer).filter_by(name=beername).first()
+    return beer
 
 
-def get_column(value):
-    try:
-        sql = '''SELECT {} From beers'''\
-            .format(value)
-        return [val[0] for val in commit(sql, task=None, get=True)]
-    except Exception as e:
-        return e
-
+def get_names():
+    db.session.commit()
+    beers = db.session.query(Beer).all()
+    return [beer.name for beer in beers]
+    
 
 def update(beer, form):
     """
@@ -74,7 +57,7 @@ def update(beer, form):
             int(request.form['val3']),
             int(request.form['val4']),
             int(request.form['val5']),
-            str(request.form['name']),
+            str(request.form['beername']),
             int(request.form['rarity']),
             int(request.form['abv']),
             int(request.form['pattern']))
@@ -99,30 +82,19 @@ def update(beer, form):
 
 
 def insert(form):
-    task = (int(request.form['val1']),
-            int(request.form['val2']),
-            int(request.form['val3']),
-            int(request.form['val4']),
-            int(request.form['val5']),
-            str(request.form['name']),
-            int(request.form['rarity']),
-            int(request.form['abv']),
-            int(request.form['pattern']))
-    sql = '''
-            INSERT INTO beers
-            SET val1 = ? ,
-                val2 = ? ,
-                val3 = ? ,
-                val4 = ? ,
-                val5 = ? ,
-                name = ? ,
-                rarity = ?,
-                abv = ?,
-                pattern = ?
-            WHERE name = ?
-            '''
     try:
-        commit(sql, task)
+        beer = Beer()
+        beer.val1 = int(request.form['val1'])
+        beer.val2 = int(request.form['val2'])
+        beer.val3 = int(request.form['val3'])
+        beer.val4 = int(request.form['val4'])
+        beer.val5 = int(request.form['val5'])
+        beer.name = str(request.form['beername'])
+        beer.rarity = int(request.form['rarity'])
+        beer.abv = int(request.form['abv'])
+        beer.pattern = int(request.form['pattern'])
+        beer.tap = -1
+        beer.save_to_db()
         return "Beer created"
     except Exception as e:
         return e
@@ -139,3 +111,4 @@ def set_tap(tap, beer_name):
         return "tap {} set to {}".format(tap, beer_name)
     except Exception as e:
         return e
+

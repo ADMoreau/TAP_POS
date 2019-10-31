@@ -3,15 +3,17 @@ from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, Field, Form, RadioField, SelectField, \
     FileField, FormField
 from wtforms.validators import DataRequired
-from app import patterns
-from app.db_handler import get_column
 
+from app.db_handler import get_names
+
+
+patterns = ['bpm', 'radialpatternshift', 'juggle']
 
 class SetBeer(FlaskForm):
     '''
     form used for home page to create the drop down menus to select beers
     '''
-    BEER_CHOICES = get_column('name')
+    BEER_CHOICES = get_names()
     tap1 = SelectField(label='Tap 1', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
     tap2 = SelectField(label='Tap 2', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
     tap3 = SelectField(label='Tap 3', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
@@ -59,7 +61,7 @@ class SelectEdit(FlaskForm):
     '''
     used to edit previously saved beers
     '''
-    BEER_CHOICES = get_column('name')
+    BEER_CHOICES = get_names()
     beer = SelectField(label='Beer', choices=[(str(beer), str(beer)) for beer in BEER_CHOICES])
     submit = SubmitField('Submit')
 

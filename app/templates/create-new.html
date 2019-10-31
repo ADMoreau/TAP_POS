@@ -2,8 +2,8 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Create New Entry</h1>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
+    <form action="/create-new" method="POST" name="create-new>
+	{{ form.hidden_tag() }}
         <p style="margin-left: 40px">
             {{ form.beername.label }}<br>
             {{ form.beername(size=32) }}
