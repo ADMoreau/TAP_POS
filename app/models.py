@@ -2,6 +2,7 @@ from flask import request
 from sqlalchemy import MetaData, create_engine, Table, Column, select, ForeignKey, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
+import pandas as pd
 
 
 metadata = MetaData()
@@ -34,7 +35,7 @@ def delete_beer(beer):
 
 
 def get_records():
-    return db_session.query(Beer).all()
+    return pd.read_sql_table('beers', engine)
 
 
 def get_beer_by_name(beername):

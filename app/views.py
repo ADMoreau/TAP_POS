@@ -7,6 +7,7 @@ from app.arduino import get_ip
 from flask import Flask
 from app.config import Config
 from flask_bootstrap import Bootstrap
+import pandas as pd
 
 app = Flask(__name__, template_folder='templates')
 app.config.from_object(Config)
@@ -95,7 +96,16 @@ def process():
         update_tap(selected_beer, tap_number)
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
-    return ('', 204)  # redirect('/')
+    return ('', 204)
+
+
+@app.route('/view')
+def view():
+    beer_df = get_records()
+    beer_df.set_index(['name'], inplace=True)
+    beer_df.index.name = None
+    #print(beer_df)
+    return beer_df.to_html(header=True)
 
 
 @app.route('/index', methods=['GET', 'POST'])
