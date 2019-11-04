@@ -1,18 +1,103 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% block content %}
-    <h1>Edit Entry</h1>
-    <form method="post" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
+    <h1>Create New Entry</h1>
+    <form method="POST" name="edit">
+	{{ form.hidden_tag() }}
         <p style="margin-left: 40px">
-            {{ form.beer.label }}
-            {{ form.beer }}
-            {% for error in form.beer.errors %}
+            {{ form.beername.label }}<br>
+            {{ form.beername(size=32) }}
+            {% for error in form.beername.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-
-        <p>{{ form.submit() }}</p>
+        <p style="margin-left: 40px">
+            {{ form.abv.label }}<br>
+            {{ form.abv(size=3) }}
+            {% for error in form.abv.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.pattern.label }}
+            {{ form.pattern }}
+            {% for error in form.abv.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.rarity.label }}<br>
+            <!-- {{ form.rarity }} -->
+            {% for subfield in form.rarity %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.rarity.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.val1.label }}<br>
+            {% for subfield in form.val1 %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.val1.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.val2.label }}<br>
+            {% for subfield in form.val2 %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.val2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.val3.label }}<br>
+            {% for subfield in form.val3 %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.val3.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.val4.label }}<br>
+            {% for subfield in form.val4 %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.val4.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">
+            {{ form.val5.label }}<br>
+            {% for subfield in form.val5 %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.val5.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p style="margin-left: 40px">{{ form.submit() }}</p>
     </form>
-
 {% endblock %}

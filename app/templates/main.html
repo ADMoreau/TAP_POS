@@ -96,7 +96,6 @@
 <body>
 {% block app_content %}
     <form action="/process" method="post">
-    {{ form.hidden_tag() }}
         <table style="width: 100%">
             <colgroup>
                 <col span="1" style="width: 20%;">
@@ -106,243 +105,483 @@
             </colgroup>
             <tbody>
                 <tr id="tap_1">
-                    <td><h2>{{ form.tap1.label }}</h2></td>
-                    <td>{{ form.tap1 (style="width: 80%;")}}</td>
+                    <td><h2>Tap 1</h2></td>
+                    <td>
+                        <select name=tap1 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap1Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap1Submit" name="action" type="submit">Submit</button></td>
 
                 </tr>
                 <tr id="tap_2">
-                    <td><h2>{{ form.tap2.label }}</h2></td>
-                    <td>{{ form.tap2 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 2</h2></td>
+                    <td>
+                        <select name=tap2 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap2Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap2Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_3">
-                    <td><h2>{{ form.tap3.label }}</h2></td>
-                    <td>{{ form.tap3 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 3</h2></td>
+                    <td>
+                        <select name=tap3 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap3Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap3Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_4">
-                    <td><h2>{{ form.tap4.label }}</h2></td>
-                    <td>{{ form.tap4 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 4</h2></td>
+                    <td>
+                        <select name=tap4 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap4Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap4Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_5">
-                    <td><h2>{{ form.tap5.label }}</h2></td>
-                    <td>{{ form.tap5 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 5</h2></td>
+                    <td>
+                        <select name=tap5 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap5Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap5Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_6">
-                    <td><h2>{{ form.tap6.label }}</h2></td>
-                    <td>{{ form.tap6 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 6</h2></td>
+                    <td>
+                        <select name=tap6 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap6Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap6Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_7">
-                    <td><h2>{{ form.tap7.label }}</h2></td>
-                    <td>{{ form.tap7 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 7</h2></td>
+                    <td>
+                        <select name=tap7 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap7Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap7Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_8">
-                    <td><h2>{{ form.tap8.label }}</h2></td>
-                    <td>{{ form.tap8 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 8</h2></td>
+                    <td>
+                        <select name=tap8 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap8Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap8Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_9">
-                    <td><h2>{{ form.tap9.label }}</h2></td>
-                    <td>{{ form.tap9 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 9</h2></td>
+                    <td>
+                        <select name=tap9 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap9Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap9Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_10">
-                    <td><h2>{{ form.tap10.label }}</h2></td>
-                    <td>{{ form.tap10 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 10</h2></td>
+                    <td>
+                        <select name=tap10 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap10Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap10Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_11">
-                    <td><h2>{{ form.tap11.label }}</h2></td>
-                    <td>{{ form.tap11 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 11</h2></td>
+                    <td>
+                        <select name=tap11 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap11Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap11Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_12">
-                    <td><h2>{{ form.tap12.label }}</h2></td>
-                    <td>{{ form.tap12 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 12</h2></td>
+                    <td>
+                        <select name=tap12 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap12Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap12Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_13">
-                    <td><h2>{{ form.tap13.label }}</h2></td>
-                    <td>{{ form.tap13 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 13</h2></td>
+                    <td>
+                        <select name=tap13 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap13Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap13Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_14">
-                    <td><h2>{{ form.tap14.label }}</h2></td>
-                    <td>{{ form.tap14 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 14</h2></td>
+                    <td>
+                        <select name=tap14 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap14Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap14Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_15">
-                    <td><h2>{{ form.tap15.label }}</h2></td>
-                    <td>{{ form.tap15 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 15</h2></td>
+                    <td>
+                        <select name=tap15 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap15Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap15Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_16">
-                    <td><h2>{{ form.tap16.label }}</h2></td>
-                    <td>{{ form.tap16 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 16</h2></td>
+                    <td>
+                        <select name=tap16 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap16Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap16Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_17">
-                    <td><h2>{{ form.tap17.label }}</h2></td>
-                    <td>{{ form.tap17 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 17</h2></td>
+                    <td>
+                        <select name=tap17 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap17Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap17Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_18">
-                    <td><h2>{{ form.tap18.label }}</h2></td>
-                    <td>{{ form.tap18 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 18</h2></td>
+                    <td>
+                        <select name=tap18 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap18Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap18Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_19">
-                    <td><h2>{{ form.tap19.label }}</h2></td>
-                    <td>{{ form.tap19 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 19</h2></td>
+                    <td>
+                        <select name=tap19 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap19Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap19Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_20">
-                    <td><h2>{{ form.tap20.label }}</h2></td>
-                    <td>{{ form.tap20 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 20</h2></td>
+                    <td>
+                        <select name=tap20 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap20Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap20Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_21">
-                    <td><h2>{{ form.tap21.label }}</h2></td>
-                    <td>{{ form.tap21 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 21</h2></td>
+                    <td>
+                        <select name=tap21 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap21Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap21Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_22">
-                    <td id="tap_22"><h2>{{ form.tap22.label }}</h2></td>
-                    <td>{{ form.tap22 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 22</h2></td>
+                    <td>
+                        <select name=tap22 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap22Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap22Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_23">
-                    <td><h2>{{ form.tap23.label }}</h2></td>
-                    <td>{{ form.tap23 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 23</h2></td>
+                    <td>
+                        <select name=tap23 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap23Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap23Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_24">
-                    <td><h2>{{ form.tap24.label }}</h2></td>
-                    <td>{{ form.tap24 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 24</h2></td>
+                    <td>
+                        <select name=tap24 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap24Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap24Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_25">
-                    <td><h2>{{ form.tap25.label }}</h2></td>
-                    <td>{{ form.tap25 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 25</h2></td>
+                    <td>
+                        <select name=tap25 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap25Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap25Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_26">
-                    <td><h2>{{ form.tap26.label }}</h2></td>
-                    <td>{{ form.tap26 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 26</h2></td>
+                    <td>
+                        <select name=tap26 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap26Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap26Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_27">
-                    <td><h2>{{ form.tap27.label }}</h2></td>
-                    <td>{{ form.tap27 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 27</h2></td>
+                    <td>
+                        <select name=tap27 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap27Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap27Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_28">
-                    <td><h2>{{ form.tap28.label }}</h2></td>
-                    <td>{{ form.tap28 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 28</h2></td>
+                    <td>
+                        <select name=tap28 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap28Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap28Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_29">
-                    <td><h2>{{ form.tap29.label }}</h2></td>
-                    <td>{{ form.tap29 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 29</h2></td>
+                    <td>
+                        <select name=tap29 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap29Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap29Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_30">
-                    <td><h2>{{ form.tap30.label }}</h2></td>
-                    <td>{{ form.tap30 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 30</h2></td>
+                    <td>
+                        <select name=tap30 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap30Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap30Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_31">
-                    <td><h2>{{ form.tap31.label }}</h2></td>
-                    <td>{{ form.tap31 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 31</h2></td>
+                    <td>
+                        <select name=tap31 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap31Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap31Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_32">
-                    <td><h2>{{ form.tap32.label }}</h2></td>
-                    <td>{{ form.tap32 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 32</h2></td>
+                    <td>
+                        <select name=tap32 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap32Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap32Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_33">
-                    <td><h2>{{ form.tap33.label }}</h2></td>
-                    <td>{{ form.tap33 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 33</h2></td>
+                    <td>
+                        <select name=tap33 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap33Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap33Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_34">
-                    <td><h2>{{ form.tap34.label }}</h2></td>
-                    <td>{{ form.tap34 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 34</h2></td>
+                    <td>
+                        <select name=tap34 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap34Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap34Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_35">
-                    <td><h2>{{ form.tap35.label }}</h2></td>
-                    <td>{{ form.tap35 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 35</h2></td>
+                    <td>
+                        <select name=tap35 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap35Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap35Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_36">
-                    <td><h2>{{ form.tap36.label }}</h2></td>
-                    <td>{{ form.tap36 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 36</h2></td>
+                    <td>
+                        <select name=tap36 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap36Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap36Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_37">
-                    <td><h2>{{ form.tap37.label }}</h2></td>
-                    <td>{{ form.tap37 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 37</h2></td>
+                    <td>
+                        <select name=tap37 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap37Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap37Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_38">
-                    <td><h2>{{ form.tap38.label }}</h2></td>
-                    <td>{{ form.tap38 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 38</h2></td>
+                    <td>
+                        <select name=tap38 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap38Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap38Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_39">
-                    <td><h2>{{ form.tap39.label }}</h2></td>
-                    <td>{{ form.tap39 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 39</h2></td>
+                    <td>
+                        <select name=tap39 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap39Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap39Submit" name="action" type="submit">Submit</button></td>
                 </tr>
                 <tr id="tap_40">
-                    <td><h2>{{ form.tap40.label }}</h2></td>
-                    <td>{{ form.tap40 (style="width: 80%;" )}}</td>
+                    <td><h2>Tap 40</h2></td>
+                    <td>
+                        <select name=tap40 method="GET" action="/" style="width: 80%;">
+                            {% for name in names %}
+                            <option value= "{{name}}" SELECTED>{{name}}</option>"
+                            {% endfor %}
+                        </select>
+                    </td>
                     <td><button class="btn btn-default" value="tap40Demo" name="action" type="submit">Demo</button></td>
                     <td><button class="btn btn-default" value="tap40Submit" name="action" type="submit">Submit</button></td>
                 </tr>

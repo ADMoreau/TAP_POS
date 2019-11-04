@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+    <h1>Edit Entry</h1>
+    <form method="post">
+        <p style="margin-left: 40px">
+            <select name=beer_select method="GET" action="/" style="width: 80%;">
+                {% for name in names %}
+                <option value= "{{name}}" SELECTED>{{name}}</option>"
+                {% endfor %}
+            </select>
+        </p>
+        <br><input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
