@@ -67,6 +67,15 @@ def insert(form):
         return e
 
 
+def update_tap(beername, tap_number):
+    old_beer = db_session.query(Beer).filter_by(tap=tap_number).first()
+    if old_beer != None:
+        old_beer.tap = -1
+    new_beer = db_session.query(Beer).filter_by(name=beername).first()
+    new_beer.tap = tap_number
+    db_session.commit()
+
+
 '''
 def set_tap(tap, beer_name):
     try:

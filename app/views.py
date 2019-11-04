@@ -1,6 +1,6 @@
 import sys
 import threading
-from flask import request, render_template, redirect, flash, Flask, session, url_for
+from flask import render_template, redirect, flash, session
 from app.models import *
 from app.forms import *
 from app.arduino import get_ip
@@ -35,7 +35,6 @@ def edit():
     form.abv.data = beer.abv
     form.beername.data = beer.name
     if request.method == "POST":
-        print(beer)
         delete_beer(beer)
         insert(form)
         return redirect('/')
@@ -93,6 +92,7 @@ def process():
         tap_number = button.replace("Submit", "")
         selected_beer = request.form[tap_number]
         tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
+        update_tap(selected_beer, tap_number)
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
     return ('', 204)  # redirect('/')
