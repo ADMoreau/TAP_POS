@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField, SelectField
 from wtforms.validators import DataRequired
 
-patterns = ['bpm', 'radialpatternshift', 'juggle']
+patterns = ['bpm', 'juggle']
 
 
 class BeerForm(FlaskForm):
@@ -24,5 +24,7 @@ class BeerForm(FlaskForm):
                       validators=[DataRequired()])
     rarity = RadioField('Rarity', choices=[('1', '1'), ('2', '2'), ('3', '3')],
                       validators=[DataRequired()])
-    abv = StringField('ABV', validators=[DataRequired()])
+    abv1 = SelectField(label='ABV1', choices=[(i, i) for i in range(10)])
+    abv2 = SelectField(label='ABV2', choices=[(i, i) for i in range(10)])
+    abv3 = SelectField(label='ABV3', choices=[(i, i) for i in range(10)])
     submit = SubmitField('Submit')

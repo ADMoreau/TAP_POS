@@ -58,7 +58,7 @@ def insert(form):
         beer.val5 = int(request.form['val5'])
         beer.name = str(request.form['beername'])
         beer.rarity = int(request.form['rarity'])
-        beer.abv = int(request.form['abv'])
+        beer.abv = str(request.form['abv1']) + str(request.form['abv2']) + str(request.form['abv3'])
         beer.pattern = int(request.form['pattern'])
         beer.tap = -1
         db_session.add(beer)

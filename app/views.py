@@ -32,8 +32,11 @@ def edit():
     form.val4.default = beer.val4
     form.val5.default = beer.val5
     form.rarity.default = beer.rarity
+    form.abv1.default = int(beer.abv[0])
+    form.abv2.default = int(beer.abv[1])
+    form.abv3.default = int(beer.abv[2])
+    form.pattern.default = beer.pattern
     form.process()
-    form.abv.data = beer.abv
     form.beername.data = beer.name
     if request.method == "POST":
         delete_beer(beer)

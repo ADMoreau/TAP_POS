@@ -12,16 +12,14 @@
             {% endfor %}
         </p>
         <p style="margin-left: 40px">
-            {{ form.abv.label }}<br>
-            {{ form.abv(size=3) }}
-            {% for error in form.abv.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            <b>ABV</b><br>
+            {{ form.abv1 }}{{ form.abv2 }}.{{ form.abv3 }}
+        </p>
         </p>
         <p style="margin-left: 40px">
-            {{ form.pattern.label }}
+            {{ form.pattern.label }}<br>
             {{ form.pattern }}
-            {% for error in form.abv.errors %}
+            {% for error in form.pattern.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
