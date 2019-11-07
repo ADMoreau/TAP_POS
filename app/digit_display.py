@@ -1,14 +1,12 @@
-
-'''
 import RPi.GPIO as GPIO
 
 
 class DigitDisplay():
-    ''''''
+    '''
     This object will be the controller for the the digit display that displays the ABV value.
     ABV value is passed in as three integers with an automatic decimal point placed at the second digit.
     Each digit is a 7 segment display
-    ''''''
+    '''
 
     def __init__(self):
         print("Connecting to Digit Display")
@@ -48,11 +46,11 @@ class DigitDisplay():
         GPIO.output(self.segmentLatchc, GPIO.LOW)
 
     def show_number(self, number):
-        ''''''
+        '''
         Sets the digits to the values in number
         :param number: list of three integers
         :return:
-        ''''''
+        '''
 
         a = 1 << 0
         b = 1 << 6
@@ -118,4 +116,3 @@ class DigitDisplay():
         GPIO.output(self.segmentLatchb, GPIO.HIGH)
         GPIO.output(self.segmentLatchc, GPIO.LOW)
         GPIO.output(self.segmentLatchc, GPIO.HIGH)
-'''

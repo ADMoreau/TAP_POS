@@ -1,42 +1,37 @@
 import socket
 import time
 import serial
-#import serial.tools.list_ports
+# import serial.tools.list_ports
 from app import digit_display
+from app.models import get_beer_by_name
 
-'''
+
 class Arduino():
-    ''''''
+    """
     object to use to control the two arduino teensy boards
     each board is assigned to a separate arduino object
-    ''''''
+    """
 
     def __init__(self, board):
         self.board = board
 
-    def display(self, selected_beer, scrolltext = False):
-        beer_info = get_beer_by_name(selected_beer)[0]
-        #print(beer_info)
+    def display(self, selected_beer, scrolltext=False):
+        beer = get_beer_by_name(selected_beer)
+        # print(beer_info)
         if scrolltext:
-            ''''''
+            '''
             use the scroll text thread to display the name and set the three digit display
-            ''''''
-            self.send_cmd(beer_info['name'])
-            digit_display.show_number(beer_info['abv'])
+            '''
+            self.send_cmd(beer.name)
+            digit_display.show_number(beer.abv)
         else:
-            ''''''
+            '''
             use this thread to send the other information to the other teensy
-            ''''''
-            to_send = beer_info['val1'] + beer_info['val2'] + beer_info['val3'] + beer_info['val4'] + beer_info['val5']\
-                      + beer_info['pattern'] \
-                      + beer_info['rarity']
+            '''
+            to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
+                      + str(beer.pattern) \
+                      + str(beer.rarity)
             self.send_cmd(to_send)
-
-        ''''''
-        self.arduino_send_cmd("1A=101")
-        time.sleep(4)
-        self.arduino_send_cmd("1A=102")
-        ''''''
 
     def get_resp(self, s):
         time.sleep(.1)
@@ -45,12 +40,12 @@ class Arduino():
 
     def send_cmd(self, s):
         self.board.flush()
-        s = s+'\n'
+        s = s + '\n'
         self.board.write(s.encode())
         self.arduino_get_resp()
         time.sleep(.1)
         self.board.flush()
-'''
+
 
 # try to detect the USB port where Arduino is connected
 def arduino_get_port():
@@ -76,4 +71,3 @@ def get_ip():
     finally:
         s.close()
     return ip
-

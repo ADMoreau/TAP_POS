@@ -75,19 +75,3 @@ def update_tap(beername, tap_number):
     new_beer = db_session.query(Beer).filter_by(name=beername).first()
     new_beer.tap = tap_number
     db_session.commit()
-
-
-'''
-def set_tap(tap, beer_name):
-    try:
-        task = (tap, beer_name)
-        sql = ''''''
-            UPDATE beers
-            SET tap = ?
-            WHERE name = ?
-            ''''''
-        commit(sql, task)
-        return "tap {} set to {}".format(tap, beer_name)
-    except Exception as e:
-        return e
-'''
