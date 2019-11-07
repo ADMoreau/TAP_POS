@@ -22,21 +22,20 @@ class Arduino():
             '''
             use the scroll text thread to display the name and set the three digit display
             '''
-            self.send_cmd(beer.name)
-            digit_display.show_number(beer.abv)
+            self.send_cmd(beer.name.encode())
         else:
             '''
             use this thread to send the other information to the other teensy
             '''
             to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
                       + str(beer.pattern) \
-                      + str(beer.rarity)
+                      + str(beer.rarity) + '\n'
             self.send_cmd(to_send)
 
     def get_resp(self, s):
         time.sleep(.1)
         while (self.board.in_waiting > 0):
-            print(s.readline().decode(), end="")
+            print(s.readline().decode('ISO-8859-1', errors='replace'), end="")
 
     def send_cmd(self, s):
         self.board.flush()
@@ -45,6 +44,14 @@ class Arduino():
         self.arduino_get_resp()
         time.sleep(.1)
         self.board.flush()
+
+    def flush(self, scrolltext = False):
+        if scrolltext = True:
+            self.send_cmd(" ")
+            self.board.flushInput()
+        else:
+            self.send_cmd("end\n")
+            self.board.flushInput()
 
 
 # try to detect the USB port where Arduino is connected

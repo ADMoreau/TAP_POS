@@ -8,6 +8,7 @@ from flask import Flask
 from app.config import Config
 from flask_bootstrap import Bootstrap
 import pandas as pd
+import threading
 
 app = Flask(__name__, template_folder='templates')
 app.config.from_object(Config)
@@ -122,40 +123,66 @@ def index():
     return render_template('main.html', names=get_names())
 
 
+def watch_for_tap(taps, scroll, levels, digits):
+    '''
+    thread to monitor and run the displays
+    '''
+    digits.digit_cleanup()
+    while True:
+        if (taps.in_waiting > 0):
+            tap = int(taps.readline().decode('ISO-8859-1', errors='replace')[:2])
+            beer = get_beer_by_tap(tap)
+            levels.flush()
+            levels.display(beer, scrolltext=False)
+            scroll.display(beer, scrolltext=True)
+            taps.flush()
+            levels.flush(scrolltext=False)
+            scroll.flush(scrolltext=True)
+            digits.digit_cleanup()
+
 
 if __name__ == '__main__':
 
+    try:
+        '''
+        connect to and set the serial connection between the raspberry pi and teensy boards
+
+        scroll_text = teensy 3.2
+        led_display = teensy 3.6
+        '''
+
+        print('Connecting to Arduinos')
+        port = '/dev/ttyUSB-SCROLLTEXT'
+        scroll_text_arduino = serial.Serial(port, 9600, timeout=1)
+        time.sleep(.5);
+        scroll_text = Arduino(scroll_text_arduino)
+        print("Scroll text board connected")
+
+        port = '/dev/ttyUSB-MAINDISPLAY'
+        led_display_arduino = serial.Serial(port, 9600, timeout=1)
+        time.sleep(.5);
+        led_display = Arduino(led_display_arduino)
+        print("LED board connected")
+
+        taps = '/dev/ttyS0'
+        taps = serial.Serial(taps, 9600, timeout=2)
+        time.sleep(.5)
+
+        digit_display = DigitDisplay()
+        print("Digit Display Connected")
+
+        watch_thread = threading.Thread(target=watch_for_tap, args=(taps,
+                                                                    scroll_text,
+                                                                    led_display,
+                                                                    digit_display))
+        watch_thread.start()
+                                                                    
+
+    except Exception as e:
+        print(e)
+        
     print("Current IP is", get_ip())
     print("Point your browser to http://", get_ip(), sep="")
     print()
 
     app.run(debug=True, host='0.0.0.0')
-
-''' 
-try:
-    ''''''
-    connect to and set the serial connection between the raspberry pi and teensy boards
-
-    scroll_text = teensy 3.2
-    led_display = teensy 3.6
-    ''''''
-
-    print('Connecting to Arduinos')
-    port = '/dev/ttyUSB-SCROLLTEXT'
-    scroll_text_arduino = serial.Serial(port, 9600, timeout=1)
-    time.sleep(.5);
-    scroll_text = Arduino(scroll_text_arduino)
-    print("Scroll text board connected")
-
-    port = '/dev/ttyUSB-MAINDISPLAY'
-    led_display_arduino = serial.Serial(port, 9600, timeout=1)
-    time.sleep(.5);
-    led_display = Arduino(led_display_arduino)
-    print("LED board connected")
-
-    digit_display = DigitDisplay()
-    print("Digit Display Connected")
-
-except Exception as e:
-    print(e)
-'''

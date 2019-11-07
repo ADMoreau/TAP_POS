@@ -29,6 +29,14 @@ class Beer(Base):
         return '<BEER {}>'.format(self.name)
 
 
+def get_beer_by_tap(tapno):
+    try:
+        beer = db_session.query(Beer).filter_by(tap=tapno).first()
+        return beer
+    except Exception as e:
+        return e
+
+
 def delete_beer(beer):
     db_session.query(Beer).filter_by(name=beer.name).delete()
     db_session.commit()

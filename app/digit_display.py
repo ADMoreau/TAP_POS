@@ -10,19 +10,21 @@ class DigitDisplay():
 
     def __init__(self):
         print("Connecting to Digit Display")
+        GPIO.setwarnings(False)
+        GPIO.cleanup()
         GPIO.setmode(GPIO.BOARD)
 
-        self.segmentClocka = 29
-        self.segmentLatcha = 31
-        self.segmentDataa = 33
+        segmentClocka=11
+        segmentLatcha=13
+        segmentDataa=15
 
-        self.segmentClockb = 11
-        self.segmentLatchb = 13
-        self.segmentDatab = 15
+        segmentClockb=29
+        segmentLatchb=31
+        segmentDatab=33
 
-        self.segmentClockc = 7
-        self.segmentLatchc = 35
-        self.segmentDatac = 37
+        segmentClockc=7
+        segmentLatchc=35
+        segmentDatac=37
 
         GPIO.setup(self.segmentClocka, GPIO.OUT)
         GPIO.setup(self.segmentDataa, GPIO.OUT)
@@ -116,3 +118,24 @@ class DigitDisplay():
         GPIO.output(self.segmentLatchb, GPIO.HIGH)
         GPIO.output(self.segmentLatchc, GPIO.LOW)
         GPIO.output(self.segmentLatchc, GPIO.HIGH)
+
+    def digit_cleanup(self):
+        for _ in range(8):
+            GPIO.output(segmentClocka,GPIO.LOW)
+            GPIO.output(segmentDataa,0)
+            GPIO.output(segmentClocka,GPIO.HIGH)
+
+            GPIO.output(segmentClockb,GPIO.LOW)
+            GPIO.output(segmentDatab,0)
+            GPIO.output(segmentClockb,GPIO.HIGH)
+
+            GPIO.output(segmentClockc,GPIO.LOW)
+            GPIO.output(segmentDatac,0)
+            GPIO.output(segmentClockc,GPIO.HIGH)
+
+        GPIO.output(segmentLatcha,GPIO.LOW)
+        GPIO.output(segmentLatcha,GPIO.HIGH)
+        GPIO.output(segmentLatchb,GPIO.LOW)
+        GPIO.output(segmentLatchb,GPIO.HIGH)
+        GPIO.output(segmentLatchc,GPIO.LOW)
+        GPIO.output(segmentLatchc,GPIO.HIGH)
