@@ -62,36 +62,33 @@ void loop() {
           bpm(profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
         case 2:
-          juggle(profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
-          break;
-        case 3:
           radialPaletteShift(profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 4:
+        case 3:
           all_color(CRGB::White, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 5:
+        case 4:
           all_color(CRGB::Red, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 6:
+        case 5:
           all_color(CRGB::Orange, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 7:
+        case 6:
           all_color(CRGB::Yellow, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 8:
+        case 7:
           all_color(CRGB::Green, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 9:
+        case 8:
           all_color(CRGB::Blue, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 10:
+        case 9:
           all_color(CRGB::Indigo, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;
-        case 11:
+        case 10:
           all_color(CRGB::Violet, profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;  
-        case 12:
+        case 11:
           rainbow(profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;  
       }

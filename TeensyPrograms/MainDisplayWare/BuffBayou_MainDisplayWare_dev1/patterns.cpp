@@ -1,14 +1,9 @@
-////look up gHue
-
-
-
-
 #include "FastLED.h"
 #include "patterns.h"
 
 #define LED_TYPE    WS2812B
 #define COLOR_ORDER GRB
-#define BRIGHTNESS          96
+#define BRIGHTNESS          222
 #define NUM_LEDS_PER_STRIP 63
 
 CRGB profOne[NUM_LEDS_PER_STRIP];
@@ -99,47 +94,6 @@ const void bpm(int profOneNUM, int profTwoNUM, int profThreeNUM, int profFourNUM
     rarityDotz[i] = ColorFromPalette(palette, gHue+(i*2), beat-gHue+(i*10));
   }
   indicaLEDs[indicaLEDsNUM] = ColorFromPalette(palette, gHue+(indicaLEDsNUM*2), beat-gHue+(indicaLEDsNUM*10));
-
-  FastLED.show();
-  FastLED.delay(1000/FRAMES_PER_SECOND); 
-}
-
-const void juggle(int profOneNUM, int profTwoNUM, int profThreeNUM, int profFourNUM, int profFiveNUM, int rarityDotzNUM, int indicaLEDsNUM)
-{
-  // eight colored dots, weaving in and out of sync with each other
-  fadeToBlackBy( profOne, profOneNUM, 20);
-  fadeToBlackBy( profTwo, profTwoNUM, 20);
-  fadeToBlackBy( profThree, profThreeNUM, 20);
-  fadeToBlackBy( profFour, profFourNUM, 20);
-  byte dothue = 0;
-  for( int i = 0; i < 8; i++) {
-    profOne[beatsin16( i+7, 0, profOneNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    profTwo[beatsin16( i+7, 0, profTwoNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    profThree[beatsin16( i+7, 0, profThreeNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    profFour[beatsin16( i+7, 0, profFourNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    profFive[beatsin16( i+7, 0, profFiveNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    rarityDotz[beatsin16( i+7, 0, rarityDotzNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
-  for( int i = 0; i < 8; i++) {
-    indicaLEDs[beatsin16( i+7, 0, indicaLEDsNUM-1 )] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
 
   FastLED.show();
   FastLED.delay(1000/FRAMES_PER_SECOND); 

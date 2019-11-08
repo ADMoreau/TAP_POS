@@ -14,17 +14,17 @@ class DigitDisplay():
         GPIO.cleanup()
         GPIO.setmode(GPIO.BOARD)
 
-        segmentClocka=11
-        segmentLatcha=13
-        segmentDataa=15
+        self.segmentClocka=11
+        self.segmentLatcha=13
+        self.segmentDataa=15
 
-        segmentClockb=29
-        segmentLatchb=31
-        segmentDatab=33
+        self.segmentClockb=29
+        self.segmentLatchb=31
+        self.segmentDatab=33
 
-        segmentClockc=7
-        segmentLatchc=35
-        segmentDatac=37
+        self.segmentClockc=7
+        self.segmentLatchc=35
+        self.segmentDatac=37
 
         GPIO.setup(self.segmentClocka, GPIO.OUT)
         GPIO.setup(self.segmentDataa, GPIO.OUT)
@@ -121,21 +121,21 @@ class DigitDisplay():
 
     def digit_cleanup(self):
         for _ in range(8):
-            GPIO.output(segmentClocka,GPIO.LOW)
-            GPIO.output(segmentDataa,0)
-            GPIO.output(segmentClocka,GPIO.HIGH)
+            GPIO.output(self.segmentClocka,GPIO.LOW)
+            GPIO.output(self.segmentDataa,0)
+            GPIO.output(self.segmentClocka,GPIO.HIGH)
 
-            GPIO.output(segmentClockb,GPIO.LOW)
-            GPIO.output(segmentDatab,0)
-            GPIO.output(segmentClockb,GPIO.HIGH)
+            GPIO.output(self.segmentClockb,GPIO.LOW)
+            GPIO.output(self.segmentDatab,0)
+            GPIO.output(self.segmentClockb,GPIO.HIGH)
 
-            GPIO.output(segmentClockc,GPIO.LOW)
-            GPIO.output(segmentDatac,0)
-            GPIO.output(segmentClockc,GPIO.HIGH)
+            GPIO.output(self.segmentClockc,GPIO.LOW)
+            GPIO.output(self.segmentDatac,0)
+            GPIO.output(self.segmentClockc,GPIO.HIGH)
 
-        GPIO.output(segmentLatcha,GPIO.LOW)
-        GPIO.output(segmentLatcha,GPIO.HIGH)
-        GPIO.output(segmentLatchb,GPIO.LOW)
-        GPIO.output(segmentLatchb,GPIO.HIGH)
-        GPIO.output(segmentLatchc,GPIO.LOW)
-        GPIO.output(segmentLatchc,GPIO.HIGH)
+        GPIO.output(self.segmentLatcha,GPIO.LOW)
+        GPIO.output(self.segmentLatcha,GPIO.HIGH)
+        GPIO.output(self.segmentLatchb,GPIO.LOW)
+        GPIO.output(self.segmentLatchb,GPIO.HIGH)
+        GPIO.output(self.segmentLatchc,GPIO.LOW)
+        GPIO.output(self.segmentLatchc,GPIO.HIGH)

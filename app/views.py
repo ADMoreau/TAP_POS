@@ -3,16 +3,24 @@ import threading
 from flask import render_template, redirect, flash, session
 from models import *
 from forms import *
-from arduino import get_ip
+from arduino import *
 from flask import Flask
 from config import Config
 from flask_bootstrap import Bootstrap
 import pandas as pd
 import threading
+import serial
+import time
+
 
 app = Flask(__name__, template_folder='templates')
 app.config.from_object(Config)
 bootstrap = Bootstrap(app)
+
+scroll_text = None
+led_display = None
+digit_display = None
+
 
 
 @app.route('/edit', methods=['GET', 'POST'])
@@ -84,20 +92,22 @@ def process():
     if 'Demo' in button:
         # change the name of the clicked button from Demo + tap number to just the tap number
         # beer must be saved before demo
-        tap_number = button.replace("Demo", "")
-        selected_beer = request.form[tap_number]
-        beer_vals = get_beer_by_name(selected_beer)
-        print(beer_vals.name)
+        #tap_number = button.replace("Demo", "")
+        #selected_beer = request.form[tap_number]
+        #beer_vals = get_beer_by_name(selected_beer)
+        #print(beer_vals.name)
         # spawn and start the threads to drive the arduino displays
-        # threading.Thread(target=scroll_text.demo, args=(selected_beer, )).start().join()
-        # threading.Thread(target=led_display.demo, args=(selected_beer, )).start().join()
+        #scroll = threading.Thread(target=scroll_text.display, args=(selected_beer, True)).start()
+        #display = threading.Thread(target=led_display.display, args=(selected_beer, )).start()
+        #scroll.join()
+        #display.join()
 
     elif 'Submit' in button:
         # save the beer to the proper tap number
-        tap_number = button.replace("Submit", "")
-        selected_beer = request.form[tap_number]
-        tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
-        update_tap(selected_beer, tap_number)
+        #tap_number = button.replace("Submit", "")
+        #selected_beer = request.form[tap_number]
+        #tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
+        #update_tap(selected_beer, tap_number)
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
     return ('', 204)
@@ -127,6 +137,7 @@ def watch_for_tap(taps, scroll, levels, digits):
     '''
     thread to monitor and run the displays
     '''
+    print("taps initialized")
     digits.digit_cleanup()
     while True:
         if (taps.in_waiting > 0):
@@ -167,16 +178,18 @@ if __name__ == '__main__':
         taps = '/dev/ttyS0'
         taps = serial.Serial(taps, 9600, timeout=2)
         time.sleep(.5)
+        print("Taps I2C receiver connected")
 
         digit_display = DigitDisplay()
         print("Digit Display Connected")
 
+        '''
         watch_thread = threading.Thread(target=watch_for_tap, args=(taps,
                                                                     scroll_text,
                                                                     led_display,
                                                                     digit_display))
         watch_thread.start()
-
+        '''
 
     except Exception as e:
         print(e)
