@@ -1,11 +1,11 @@
 import sys
 import threading
 from flask import render_template, redirect, flash, session
-from app.models import *
-from app.forms import *
-from app.arduino import get_ip
+from models import *
+from forms import *
+from arduino import get_ip
 from flask import Flask
-from app.config import Config
+from config import Config
 from flask_bootstrap import Bootstrap
 import pandas as pd
 import threading
@@ -176,11 +176,11 @@ if __name__ == '__main__':
                                                                     led_display,
                                                                     digit_display))
         watch_thread.start()
-                                                                    
+
 
     except Exception as e:
         print(e)
-        
+
     print("Current IP is", get_ip())
     print("Point your browser to http://", get_ip(), sep="")
     print()

@@ -2,8 +2,8 @@ import socket
 import time
 import serial
 # import serial.tools.list_ports
-from app import digit_display
-from app.models import get_beer_by_name
+from digit_display import *
+from models import get_beer_by_name
 
 
 class Arduino():
@@ -46,7 +46,7 @@ class Arduino():
         self.board.flush()
 
     def flush(self, scrolltext = False):
-        if scrolltext = True:
+        if scrolltext == True:
             self.send_cmd(" ")
             self.board.flushInput()
         else:
