@@ -15,13 +15,13 @@ class Arduino():
     def __init__(self, board):
         self.board = board
 
-    def display(self, selected_beer, scrolltext=False):
-        beer = get_beer_by_name(selected_beer)
-        # print(beer_info)
+    def display(self, beer, scrolltext=False):
+        #beer = get_beer_by_name(selected_beer)
         if scrolltext:
             '''
             use the scroll text thread to display the name and set the three digit display
             '''
+            print(beer.name)
             self.send_cmd(beer.name)
             #time.sleep(6)
             #self.send_cmd(" ")
@@ -29,9 +29,14 @@ class Arduino():
             '''
             use this thread to send the other information to the other teensy
             '''
+            tapnum = 99
+            if beer.tap != -1:
+                tapnum = beer.tap
             to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
                       + str(beer.rarity) \
+                      + str(tapnum).zfill(2) \
                       + str(beer.pattern).zfill(3)
+            print(to_send)
             self.send_cmd(to_send)
             #time.sleep(6)
             #self.send_cmd("end")
@@ -47,8 +52,6 @@ class Arduino():
         print(s)
         self.board.write(s.encode())
         self.get_resp()
-        #time.sleep()
-        #self.board.flush()
 
     def flush(self, scrolltext = False):
         if scrolltext == True:

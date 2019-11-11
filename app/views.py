@@ -20,7 +20,7 @@ bootstrap = Bootstrap(app)
 scroll_text = None
 led_display = None
 digit_display = None
-
+lock = threading.Lock()
 
 
 @app.route('/edit', methods=['GET', 'POST'])
@@ -103,21 +103,30 @@ def process():
 
     :return: nothing, do not switch or update the web page in any way
     '''
-    
+    def demo(selected_beer):
+        if lock.locked() == False:
+            try:
+                lock.acquire()
+                scroll_text.display(selected_beer, True)
+                led_display.display(selected_beer)
+                time.sleep(10)
+                scroll_text.flush(True)
+                led_display.flush()
+            finally:
+                lock.release()
+        else:
+            return
+        
     button = request.form['action']
     if 'Demo' in button:
         # change the name of the clicked button from Demo + tap number to just the tap number
         # beer must be saved before demo
         tap_number = button.replace("Demo", "")
         selected_beer = request.form[tap_number]
-        beer_vals = get_beer_by_name(selected_beer)
-        print(beer_vals.name)
+        beer = get_beer_by_name(selected_beer)
+        #print(beer_vals.name)
         # spawn and start the threads to drive the arduino displays
-        scroll_text.display(selected_beer, True)
-        led_display.display(selected_beer)
-        time.sleep(6)
-        scroll_text.flush(True)
-        led_display.flush()
+        demo(beer)
         '''
         scrollstart = threading.Thread(target=scroll_text.display, args=(selected_beer, True)).start()
         displaystart = threading.Thread(target=led_display.display, args=(selected_beer, )).start()
@@ -134,8 +143,9 @@ def process():
         # save the beer to the proper tap number
         tap_number = button.replace("Submit", "")
         selected_beer = request.form[tap_number]
-        tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
+        tap_number = int(tap_number.replace("tap", "")) - 1  # get the actual number to give to the database
         update_tap(selected_beer, tap_number)
+        print(str(tap_number) + " update")
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
     
@@ -162,23 +172,39 @@ def index():
     return render_template('main.html', names=get_names())
 
 
-def watch_for_tap(taps, scroll, levels, digits):
+def watch_for_tap(taps, scroll, levels): #, digits):
     '''
     thread to monitor and run the displays
     '''
     print("taps initialized")
-    digits.digit_cleanup()
+    #digits.digit_cleanup()
     while True:
-        if (taps.in_waiting > 0):
-            tap = int(taps.readline().decode('ISO-8859-1', errors='replace')[:2])
-            beer = get_beer_by_tap(tap)
-            levels.flush()
-            levels.display(beer, scrolltext=False)
-            scroll.display(beer, scrolltext=True)
-            taps.flush()
-            levels.flush(scrolltext=False)
-            scroll.flush(scrolltext=True)
-            digits.digit_cleanup()
+        if (taps.in_waiting > 0 and lock.locked() == False):
+            try:
+                lock.acquire()
+                tap = int(taps.readline().decode('ISO-8859-1', errors='replace')[:-2])
+                print(tap)
+                beer = get_beer_by_tap(tap)
+                if beer is not None:
+                    print(beer.name)
+                    levels.display(beer, scrolltext=False)
+                    scroll.display(beer, scrolltext=True)
+                    time.sleep(10)
+                    levels.flush(scrolltext=False)
+                    #digits.digit_cleanup()
+                else:
+                    print("No Beer")
+                    scroll.send_cmd("NO BEER ON TAP {}".format(tap + 1))
+                    time.sleep(10)
+                scroll.flush(scrolltext=True)
+            finally:
+                taps.flush()
+                taps.in_waiting == 0
+                lock.release()
+        
+        elif (taps.in_waiting > 0 and lock.locked() == True):
+                taps.flush()
+                taps.in_waiting == 0
 
 
 if __name__ == '__main__':
@@ -193,32 +219,31 @@ if __name__ == '__main__':
 
         print('Connecting to Arduinos')
         port = '/dev/ttyUSB-SCROLLTEXT'
-        scroll_text_arduino = serial.Serial(port, 9600, timeout=1)
+        scroll_text_arduino = serial.Serial(port, 9600, timeout=3)
         time.sleep(.5);
         scroll_text = Arduino(scroll_text_arduino)
         print("Scroll text board connected")
 
         port = '/dev/ttyUSB-MAINDISPLAY'
-        led_display_arduino = serial.Serial(port, 9600, timeout=1)
+        led_display_arduino = serial.Serial(port, 9600, timeout=3)
         time.sleep(.5);
         led_display = Arduino(led_display_arduino)
         print("LED board connected")
 
         taps = '/dev/ttyS0'
-        taps = serial.Serial(taps, 9600, timeout=2)
+        taps = serial.Serial(taps, 9600, timeout=3)
         time.sleep(.5)
         print("Taps I2C receiver connected")
 
         #digit_display = DigitDisplay()
         #print("Digit Display Connected")
-
-        '''
+        
         watch_thread = threading.Thread(target=watch_for_tap, args=(taps,
                                                                     scroll_text,
-                                                                    led_display,
-                                                                    digit_display))
+                                                                    led_display))
+                                                                    #digit_display))
         watch_thread.start()
-        '''
+        
 
     except Exception as e:
         print(e)
