@@ -23,19 +23,18 @@ class Arduino():
             use the scroll text thread to display the name and set the three digit display
             '''
             self.send_cmd(beer.name)
-            time.sleep(6)
-            self.send_cmd(" ")
+            #time.sleep(6)
+            #self.send_cmd(" ")
         else:
             '''
             use this thread to send the other information to the other teensy
             '''
             to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
                       + str(beer.rarity) \
-                      + "00010"
-                      #+ str(beer.pattern).zfill(3) \
+                      + str(beer.pattern).zfill(3)
             self.send_cmd(to_send)
-            time.sleep(6)
-            self.send_cmd("end")
+            #time.sleep(6)
+            #self.send_cmd("end")
 
     def get_resp(self):
         time.sleep(.1)
@@ -56,7 +55,7 @@ class Arduino():
             self.send_cmd(" ")
             self.board.flushInput()
         else:
-            self.send_cmd("end\n")
+            self.send_cmd("end")
             self.board.flushInput()
 
 

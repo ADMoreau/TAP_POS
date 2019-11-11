@@ -2,8 +2,8 @@ import time
 import serial
 
 
-port = '/dev/ttyUSB-MAINDISPLAY'
-#port = '/dev/ttyUSB-SCROLLTEXT'
+#port = '/dev/ttyUSB-MAINDISPLAY'
+port = '/dev/ttyUSB-SCROLLTEXT'
 levelsDisplay = serial.Serial(port, 9600, timeout=1)
 time.sleep(.5)
 

@@ -3,11 +3,11 @@ import threading
 from flask import render_template, redirect, flash, session
 
 #from app.digit_display import DigitDisplay
-from app.models import *
-from app.forms import *
-from app.arduino import *
+from models import *
+from forms import *
+from arduino import *
+from config import Config
 from flask import Flask
-from app.config import Config
 from flask_bootstrap import Bootstrap
 import serial
 import time
@@ -103,30 +103,42 @@ def process():
 
     :return: nothing, do not switch or update the web page in any way
     '''
-    '''
+    
     button = request.form['action']
     if 'Demo' in button:
         # change the name of the clicked button from Demo + tap number to just the tap number
         # beer must be saved before demo
-        #tap_number = button.replace("Demo", "")
-        #selected_beer = request.form[tap_number]
-        #beer_vals = get_beer_by_name(selected_beer)
-        #print(beer_vals.name)
+        tap_number = button.replace("Demo", "")
+        selected_beer = request.form[tap_number]
+        beer_vals = get_beer_by_name(selected_beer)
+        print(beer_vals.name)
         # spawn and start the threads to drive the arduino displays
-        #scroll = threading.Thread(target=scroll_text.display, args=(selected_beer, True)).start()
-        #display = threading.Thread(target=led_display.display, args=(selected_beer, )).start()
-        #scroll.join()
-        #display.join()
+        scroll_text.display(selected_beer, True)
+        led_display.display(selected_beer)
+        time.sleep(6)
+        scroll_text.flush(True)
+        led_display.flush()
+        '''
+        scrollstart = threading.Thread(target=scroll_text.display, args=(selected_beer, True)).start()
+        displaystart = threading.Thread(target=led_display.display, args=(selected_beer, )).start()
+        scrollstart.join()
+        displaystart.join()
+        time.sleep(6)
+        scrollend = threading.Thread(target=scroll_text.flush, args=(selected_beer, True)).start()
+        displayend = threading.Thread(target=led_display.flush, args=(selected_beer, )).start()
+        scrollend.join()
+        displayend.join()
+        '''
 
     elif 'Submit' in button:
         # save the beer to the proper tap number
-        #tap_number = button.replace("Submit", "")
-        #selected_beer = request.form[tap_number]
-        #tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
-        #update_tap(selected_beer, tap_number)
+        tap_number = button.replace("Submit", "")
+        selected_beer = request.form[tap_number]
+        tap_number = int(tap_number.replace("tap", ""))  # get the actual number to give to the database
+        update_tap(selected_beer, tap_number)
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
-    '''
+    
     return ('', 204)
 
 
