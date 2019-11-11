@@ -1,14 +1,14 @@
 import sys
 import threading
 from flask import render_template, redirect, flash, session
-from models import *
-from forms import *
-from arduino import *
+
+#from app.digit_display import DigitDisplay
+from app.models import *
+from app.forms import *
+from app.arduino import *
 from flask import Flask
-from config import Config
+from app.config import Config
 from flask_bootstrap import Bootstrap
-import pandas as pd
-import threading
 import serial
 import time
 
@@ -67,6 +67,21 @@ def select_edit():
     return render_template('select-edit.html', names=get_names())
 
 
+@app.route('/select-delete', methods=['GET', 'POST'])
+def select_delete():
+    '''
+    go to the page where you select the beer that you want to edit
+
+    select fields are not preselected with the saved values
+    '''
+    if request.method == "POST":
+        beername = request.form['beer_select']
+        beer = get_beer_by_name(beername)
+        delete_beer(beer)
+        return redirect('/')
+    return render_template('select-edit.html', names=get_names())
+
+
 @app.route('/create-new', methods=['GET', 'POST'])
 def create_new():
     '''
@@ -87,6 +102,7 @@ def process():
     process the buttons used to set and demonstrate the beer information in the database
 
     :return: nothing, do not switch or update the web page in any way
+    '''
     '''
     button = request.form['action']
     if 'Demo' in button:
@@ -110,6 +126,7 @@ def process():
         #update_tap(selected_beer, tap_number)
         # print(set_tap(tap_number, selected_beer))
     # returns nothing, leaving page as it was when function was called
+    '''
     return ('', 204)
 
 
@@ -180,8 +197,8 @@ if __name__ == '__main__':
         time.sleep(.5)
         print("Taps I2C receiver connected")
 
-        digit_display = DigitDisplay()
-        print("Digit Display Connected")
+        #digit_display = DigitDisplay()
+        #print("Digit Display Connected")
 
         '''
         watch_thread = threading.Thread(target=watch_for_tap, args=(taps,
