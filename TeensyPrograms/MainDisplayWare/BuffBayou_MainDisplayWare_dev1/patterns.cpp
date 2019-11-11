@@ -132,7 +132,7 @@ const void radialPaletteShift(int profOneNUM, int profTwoNUM, int profThreeNUM, 
   FastLED.delay(1000/FRAMES_PER_SECOND); 
 }
 
-const void all_color(CRGB c, int profOneNUM, int profTwoNUM, int profThreeNUM, int profFourNUM, int profFiveNUM, int rarityDotzNUM, int indicaLEDsNUM)
+const void solid_color(CRGB c, int profOneNUM, int profTwoNUM, int profThreeNUM, int profFourNUM, int profFiveNUM, int rarityDotzNUM, int indicaLEDsNUM)
 {
   for (uint16_t i = 0; i < profOneNUM; i++) {
     profOne[i] = c;

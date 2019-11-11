@@ -5,6 +5,23 @@
 char cmdBuffer[CMDBUFSIZE];
 int charsRead;
 
+CRGB colors[] = {CRGB::AliceBlue, CRGB::Amethyst, CRGB::AntiqueWhite, CRGB::Aqua, CRGB::Aquamarine, CRGB::Azure, CRGB::Beige, CRGB::Bisque,
+                CRGB::BlanchedAlmond, CRGB::Blue, CRGB::BlueViolet, CRGB::Brown, CRGB::BurlyWood, CRGB::CadetBlue, CRGB::Chartreuse, CRGB::Chocolate,
+                CRGB::Coral, CRGB::CornflowerBlue, CRGB::Cornsilk, CRGB::Crimson, CRGB::Cyan, CRGB::DarkBlue, CRGB::DarkCyan, CRGB::DarkGoldenrod, CRGB::DarkGray,
+                CRGB::DarkGreen, CRGB::DarkKhaki, CRGB::DarkMagenta, CRGB::DarkOliveGreen, CRGB::DarkOrange, CRGB::DarkOrchid, CRGB::DarkRed, CRGB::DarkSalmon,
+                CRGB::DarkSeaGreen, CRGB::DarkSlateBlue, CRGB::DarkSlateGray, CRGB::DarkTurquoise, CRGB::DarkViolet, CRGB::DeepPink, CRGB::DeepSkyBlue,
+                CRGB::DimGray, CRGB::DodgerBlue, CRGB::FireBrick, CRGB::FloralWhite, CRGB::ForestGreen, CRGB::Fuchsia, CRGB::Gainsboro, CRGB::GhostWhite, CRGB::Gold,
+                CRGB::Goldenrod, CRGB::Gray, CRGB::Green, CRGB::GreenYellow, CRGB::Honeydew, CRGB::HotPink, CRGB::IndianRed, CRGB::Indigo, CRGB::Ivory, CRGB::Khaki, CRGB::Lavender,
+                CRGB::LavenderBlush, CRGB::LawnGreen, CRGB::LemonChiffon, CRGB::LightBlue, CRGB::LightCoral, CRGB::LightCyan, CRGB::LightGoldenrodYellow,
+                CRGB::LightGreen, CRGB::LightGrey, CRGB::LightPink, CRGB::LightSalmon, CRGB::LightSeaGreen, CRGB::LightSkyBlue, CRGB::LightSlateGray, CRGB::LightSteelBlue,
+                CRGB::LightYellow, CRGB::Lime, CRGB::LimeGreen, CRGB::Linen, CRGB::Magenta, CRGB::Maroon, CRGB::MediumAquamarine, CRGB::MediumBlue, CRGB::MediumOrchid,
+                CRGB::MediumPurple, CRGB::MediumSeaGreen, CRGB::MediumSlateBlue, CRGB::MediumSpringGreen, CRGB::MediumTurquoise, CRGB::MediumVioletRed,
+                CRGB::MidnightBlue, CRGB::MintCream, CRGB::MistyRose, CRGB::Moccasin, CRGB::NavajoWhite, CRGB::Navy, CRGB::OldLace, CRGB::Olive, CRGB::OliveDrab, CRGB::Orange,
+                CRGB::OrangeRed, CRGB::Orchid, CRGB::PaleGoldenrod, CRGB::PaleGreen, CRGB::PaleTurquoise, CRGB::PaleVioletRed, CRGB::PapayaWhip, CRGB::PeachPuff,
+                CRGB::Peru, CRGB::Pink, CRGB::Plaid, CRGB::Plum, CRGB::PowderBlue, CRGB::Purple, CRGB::Red, CRGB::RosyBrown, CRGB::RoyalBlue, CRGB::SaddleBrown, CRGB::Salmon,
+                CRGB::SandyBrown, CRGB::SeaGreen, CRGB::Seashell, CRGB::Sienna, CRGB::Silver, CRGB::SkyBlue, CRGB::SlateBlue, CRGB::SlateGray, CRGB::Snow, CRGB::SpringGreen,
+                CRGB::SteelBlue, CRGB::Tan, CRGB::Teal, CRGB::Thistle, CRGB::Tomato, CRGB::Turquoise, CRGB::Violet, CRGB::Wheat, CRGB::White, CRGB::WhiteSmoke, CRGB::Yellow, CRGB::YellowGreen}; 
+
 // For mirroring strips, all the "special" stuff happens just in setup.  We
 // just addLeds multiple times, once for each strip
 void setup() {
@@ -56,6 +73,9 @@ void loop() {
         read_serial();
         break;
       }
+      solid_color(colors[pattern], profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
+      
+      /*
       switch(pattern) 
       {
         case 1:
@@ -91,29 +111,9 @@ void loop() {
         case 11:
           rainbow(profOneNUM, profTwoNUM, profThreeNUM, profFourNUM, profFiveNUM, rarityDotzNUM, indicaLEDsNUM);
           break;  
-      }
-      //FastLED.show();
-      //FastLED.delay(1000/FRAMES_PER_SECOND); 
-      //EVERY_N_MILLISECONDS( 20 ) { gHue++; } // slowly cycle the "base color" through the rainbow
+      }*/
     }
 
     ledReset();
   }
 }
-
-
-//  for(int i = NUM_LEDS_PER_STRIP-1; i >= 0; i--) {
-//    // set our current dot to red, green, and blue
-//    profOne[i] = CRGB::Red;
-//    profTwo[i] = CRGB::Green;
-//    profThree[i] = CRGB::Blue;
-//    profFour[i] = CRGB::Yellow;
-//    FastLED.show();
-//    // clear our current dot before we move on
-//    profOne[i] = CRGB::Black;
-//    profTwo[i] = CRGB::Black;
-//    profThree[i] = CRGB::Black;
-//    profFour[i] = CRGB::Black;
-//    delay(100);
-//  }
-//}
