@@ -31,8 +31,8 @@ class Arduino():
             '''
             to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
                       + str(beer.rarity) \
-                      + "0001"
-                      #+ str(beer.pattern) \
+                      + "00010"
+                      #+ str(beer.pattern).zfill(3) \
             self.send_cmd(to_send)
             time.sleep(6)
             self.send_cmd("end")
