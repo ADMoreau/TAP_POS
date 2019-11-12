@@ -35,7 +35,7 @@ class Arduino():
             to_send = str(beer.val1) + str(beer.val2) + str(beer.val3) + str(beer.val4) + str(beer.val5) \
                       + str(beer.rarity) \
                       + str(tapnum).zfill(2) \
-                      + str(beer.pattern).zfill(3)
+                      + str(beer.pattern).zfill(2)
             print(to_send)
             self.send_cmd(to_send)
             #time.sleep(6)
@@ -55,7 +55,7 @@ class Arduino():
 
     def flush(self, scrolltext = False):
         if scrolltext == True:
-            self.send_cmd(" ")
+            self.send_cmd("     WELCOME TO BUFFBREW")
             self.board.flushInput()
         else:
             self.send_cmd("end")
