@@ -13,8 +13,9 @@ db_session = sessionmaker(bind=engine)()
 
 class Beer(Base):
     __tablename__ = 'beers'
-
-    name = Column(String(64), primary_key=True, nullable=False)
+    
+    ID   = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String(64), nullable=False)
     val1 = Column(Integer, nullable=False)
     val2 = Column(Integer, nullable=False)
     val3 = Column(Integer, nullable=False)
@@ -81,5 +82,16 @@ def update_tap(beername, tap_number):
     if old_beer != None:
         old_beer.tap = -1
     new_beer = db_session.query(Beer).filter_by(name=beername).first()
-    new_beer.tap = tap_number
+    temp_beer = Beer()
+    temp_beer.val1 = new_beer.val1
+    temp_beer.val2 = new_beer.val2
+    temp_beer.val3 = new_beer.val3
+    temp_beer.val4 = new_beer.val4
+    temp_beer.val5 = new_beer.val5
+    temp_beer.name = new_beer.name
+    temp_beer.rarity = new_beer.rarity
+    temp_beer.abv = new_beer.abv
+    temp_beer.pattern = new_beer.pattern
+    temp_beer.tap = tap_number
+    db_session.add(temp_beer)
     db_session.commit()
