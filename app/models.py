@@ -54,7 +54,7 @@ def get_beer_by_name(beername):
 
 def get_names():
     beers = db_session.query(Beer).all()
-    return [beer.name for beer in beers]
+    return list(set([beer.name for beer in beers]))
 
 
 def insert(form):

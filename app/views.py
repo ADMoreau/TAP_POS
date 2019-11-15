@@ -109,9 +109,11 @@ def process():
                 lock.acquire()
                 scroll_text.display(selected_beer, True)
                 led_display.display(selected_beer)
+                digit_display.show_number(beer.abv)
                 time.sleep(10)
                 scroll_text.flush(True)
                 led_display.flush()
+                digit_display.digit_cleanup()
             finally:
                 lock.release()
         else:
@@ -127,17 +129,6 @@ def process():
         #print(beer_vals.name)
         # spawn and start the threads to drive the arduino displays
         demo(beer)
-        '''
-        scrollstart = threading.Thread(target=scroll_text.display, args=(selected_beer, True)).start()
-        displaystart = threading.Thread(target=led_display.display, args=(selected_beer, )).start()
-        scrollstart.join()
-        displaystart.join()
-        time.sleep(6)
-        scrollend = threading.Thread(target=scroll_text.flush, args=(selected_beer, True)).start()
-        displayend = threading.Thread(target=led_display.flush, args=(selected_beer, )).start()
-        scrollend.join()
-        displayend.join()
-        '''
 
     elif 'Submit' in button:
         # save the beer to the proper tap number
