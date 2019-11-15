@@ -87,8 +87,7 @@ while True:
 		elif x == 'c': segments[i] = g | e | d
 		elif x == '-': segments[i] = g
 		else : segments += False
-  		#segments[i] = segments[i] | dp
-  		#segments[1] = segments[1] | dp
+	segments[1] = segments[1] | dp
 
 	for j in range(8):
 		GPIO.output(segmentClocka,GPIO.LOW)

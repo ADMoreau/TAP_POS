@@ -172,26 +172,27 @@ def index():
     return render_template('main.html', names=get_names())
 
 
-def watch_for_tap(taps, scroll, levels): #, digits):
+def watch_for_tap(taps, scroll, levels, digits):
     '''
     thread to monitor and run the displays
     '''
     print("taps initialized")
-    #digits.digit_cleanup()
+    digits.digit_cleanup()
     while True:
         if (taps.in_waiting > 0 and lock.locked() == False):
             try:
                 lock.acquire()
-                tap = int(taps.readline().decode('ISO-8859-1', errors='replace')[:-2])
+                tap = int(taps.readline().decode('ISO-8859-1', errors='replace').rstrip('\n'))
                 print(tap)
                 beer = get_beer_by_tap(tap)
                 if beer is not None:
                     print(beer.name)
                     levels.display(beer, scrolltext=False)
                     scroll.display(beer, scrolltext=True)
+                    digits.show_number(beer.abv)
                     time.sleep(10)
                     levels.flush(scrolltext=False)
-                    #digits.digit_cleanup()
+                    digits.digit_cleanup()
                 else:
                     print("No Beer")
                     scroll.send_cmd("NO BEER ON TAP {}".format(tap + 1))
@@ -230,19 +231,25 @@ if __name__ == '__main__':
         led_display = Arduino(led_display_arduino)
         print("LED board connected")
 
-        taps = '/dev/ttyS0'
-        taps = serial.Serial(taps, 9600, timeout=3)
+        taps = serial.Serial(port = '/dev/serial0',
+                            baudrate = 115200,
+                            parity = serial.PARITY_NONE,
+                            stopbits = serial.STOPBITS_ONE,
+                            bytesize = serial.EIGHTBITS,
+                            timeout= 1)
         time.sleep(.5)
         print("Taps I2C receiver connected")
 
-        #digit_display = DigitDisplay()
-        #print("Digit Display Connected")
+        digit_display = DigitDisplay()
+        print("Digit Display Connected")
+
         
         watch_thread = threading.Thread(target=watch_for_tap, args=(taps,
                                                                     scroll_text,
-                                                                    led_display))
-                                                                    #digit_display))
+                                                                    led_display,
+                                                                    digit_display))
         watch_thread.start()
+        
         
 
     except Exception as e:

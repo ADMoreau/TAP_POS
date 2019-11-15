@@ -1,14 +1,13 @@
 
-'''
 import RPi.GPIO as GPIO
 
 
 class DigitDisplay():
-    ''''''
+    '''
     This object will be the controller for the the digit display that displays the ABV value.
     ABV value is passed in as three integers with an automatic decimal point placed at the second digit.
     Each digit is a 7 segment display
-    ''''''
+    '''
 
     def __init__(self):
         print("Connecting to Digit Display")
@@ -16,13 +15,13 @@ class DigitDisplay():
         GPIO.cleanup()
         GPIO.setmode(GPIO.BOARD)
 
-        self.segmentClocka=11
-        self.segmentLatcha=13
-        self.segmentDataa=15
+        self.segmentClocka=29
+        self.segmentLatcha=31
+        self.segmentDataa=33
 
-        self.segmentClockb=29
-        self.segmentLatchb=31
-        self.segmentDatab=33
+        self.segmentClockb=11
+        self.segmentLatchb=13
+        self.segmentDatab=15
 
         self.segmentClockc=7
         self.segmentLatchc=35
@@ -50,11 +49,13 @@ class DigitDisplay():
         GPIO.output(self.segmentLatchc, GPIO.LOW)
 
     def show_number(self, number):
-        ''''''
+        '''
         Sets the digits to the values in number
         :param number: list of three integers
         :return:
-        ''''''
+        '''
+
+        print(number)
 
         a = 1 << 0
         b = 1 << 6
@@ -68,25 +69,25 @@ class DigitDisplay():
         segments = [None, None, None]
 
         for i in range(len(number)):
-            if number[i] == 1:
+            if number[i] == '1':
                 segments[i] = b | c
-            elif number[i] == 2:
+            elif number[i] == '2':
                 segments[i] = a | b | d | e | g
-            elif number[i] == 3:
+            elif number[i] == '3':
                 segments[i] = a | b | c | d | g
-            elif number[i] == 4:
+            elif number[i] == '4':
                 segments[i] = b | c | f | g
-            elif number[i] == 5:
+            elif number[i] == '5':
                 segments[i] = a | c | d | f | g
-            elif number[i] == 6:
+            elif number[i] == '6':
                 segments[i] = a | c | d | e | f | g
-            elif number[i] == 7:
+            elif number[i] == '7':
                 segments[i] = a | b | c
-            elif number[i] == 8:
+            elif number[i] == '8':
                 segments[i] = a | b | c | d | e | f | g
-            elif number[i] == 9:
+            elif number[i] == '9':
                 segments[i] = a | b | c | d | f | g
-            elif number[i] == 0:
+            elif number[i] == '0':
                 segments[i] = a | b | c | d | e | f
             elif number[i] == ' ':
                 segments[i] = 0
@@ -96,10 +97,7 @@ class DigitDisplay():
                 segments[i] = g
             else:
                 segments += False
-            segments[i] = segments[i] | dp
-
-        # temp = segments[1]
-        # temp = temp | dp
+        segments[1] = segments[1] | dp
 
         for s in range(8):
             GPIO.output(self.segmentClocka, GPIO.LOW)
@@ -141,4 +139,3 @@ class DigitDisplay():
         GPIO.output(self.segmentLatchb,GPIO.HIGH)
         GPIO.output(self.segmentLatchc,GPIO.LOW)
         GPIO.output(self.segmentLatchc,GPIO.HIGH)
-'''
