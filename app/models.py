@@ -3,10 +3,13 @@ from sqlalchemy import MetaData, create_engine, Table, Column, select, ForeignKe
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 import pandas as pd
+import os
 
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 metadata = MetaData()
-engine = create_engine('sqlite:///beers.db', connect_args={'check_same_thread': False}, echo=False)  # echo=False
+engine = create_engine('sqlite:///' + os.path.join(basedir, 'beers.db'), connect_args={'check_same_thread': False}, echo=False)  # echo=False
 Base = declarative_base()
 db_session = sessionmaker(bind=engine)()
 
